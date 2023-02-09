@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  let count = 0;
+</script>
+
+<h1>Home</h1>
+<button on:click={() => count++}>Click me!</button>
+<h2>{count}</h2>
