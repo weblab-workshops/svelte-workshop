@@ -6,6 +6,9 @@
 
   import { CommentsStore } from '../store';
 
+  /**
+   * Deletes this comment from the global store
+   */
   const deleteComment = () => {
     CommentsStore.update((prevStore) => prevStore.filter((comment) => comment.id !== id));
   };
