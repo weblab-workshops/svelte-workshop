@@ -3,6 +3,12 @@
   export let user;
   export let title;
   export let body;
+
+  import { CommentsStore } from '../store';
+
+  const deleteComment = () => {
+    CommentsStore.update((prevStore) => prevStore.filter((comment) => comment.id !== id));
+  };
 </script>
 
 <article>
@@ -11,6 +17,7 @@
   </h3>
   <h2>{title}</h2>
   <p>{body}</p>
+  <button on:click={deleteComment}>Delete {id}</button>
 </article>
 
 <style>
