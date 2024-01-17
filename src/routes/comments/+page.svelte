@@ -1,6 +1,6 @@
 <script>
   import Comment from '$lib/components/Comment.svelte';
-  import { CommentsStore } from '../../store';
+  import { CommentsStore } from '$lib/stores/store';
 </script>
 
 <h1>Comments</h1>
