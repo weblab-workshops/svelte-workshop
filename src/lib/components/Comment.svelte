@@ -3,6 +3,8 @@
   export let user;
   export let title;
   export let body;
+
+  // TODO 8: Create a function to delete the button
 </script>
 
 <article>
@@ -11,6 +13,7 @@
   </h3>
   <h2>{title}</h2>
   <p>{body}</p>
+  <!-- TODO 8: Add the delete button -->
 </article>
 
 <style>
