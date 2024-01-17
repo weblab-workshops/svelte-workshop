@@ -1,6 +1,6 @@
 <script>
-  import Comment from '../../components/Comment.svelte';
-  import { CommentsStore } from '../../store';
+  import Comment from '$lib/components/Comment.svelte';
+  import { CommentsStore } from '$lib/stores/store';
 
   let newCommentTitle = '';
 
