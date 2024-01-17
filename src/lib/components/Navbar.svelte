@@ -10,4 +10,8 @@
     background-color: aliceblue;
     padding: 20px;
   }
+
+  ul {
+    view-transition-name: header;
+  }
 </style>
