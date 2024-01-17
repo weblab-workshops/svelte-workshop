@@ -19,7 +19,6 @@
 </script>
 
 <h1>Comments</h1>
-
 <form on:submit|preventDefault={addComment}>
   <input type="text" bind:value={newCommentTitle} />
   <button type="submit">Add Comment</button>
