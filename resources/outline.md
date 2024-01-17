@@ -83,9 +83,10 @@ git reset --hard
 
 git checkout stepN
 ```
-*Note: You may need to use `git checkout stepN --force` when going from `start` to `step0`*
+*Note: You may need to use `git checkout stepN --force` when going from step to
+step since we will be creating files.*
 
-* Step 0: Installation
+* Step 1: Installation
   * *In this step we create a new SvelteKit project from scratch*
   * Create a new SvelteKit project using npm ([docs](https://kit.svelte.dev/docs/creating-a-project))
   * Create the project in the current directory.
@@ -97,8 +98,8 @@ git checkout stepN
   * To effectively develop a Svelte app, the Svelte team recommends using VSCode
     and the official [VSCode Svelte
     extension](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
-  * Use `npm run dev` to start the development server.
-* Step 1: Introduction and creating a simple counter
+  * Use `npm run dev` to start the development server and open it at [localhost:5173](localhost:5173).
+* Step 2: Introduction and creating a simple counter
   * *In this step we create a simple counter to demo the Svelte basics*
   * Svelte components consist of 3 sections: scripts, markup, and styles
     * Logic (JavaScript) goes in the `<script>` tag
@@ -112,28 +113,29 @@ git checkout stepN
 <button on:click={() => count++}>Click Me!</button>
 ```
 
-* Step 2: Pages and file-based routing
-  * *In this step we create a `comments` page and create some global styles*
+* Step 3: Pages and file-based routing
+  * *In this step we create a `comments` page using file based routing*
   * See the [routing documentation](https://kit.svelte.dev/docs/routing) for
     information about file-based routing. Essentially, client-side routes are automatically
     generated for each `+page.svelte` file you create. For example,
     `routes/comments/+page.svelte` will be loaded when you navigate to
-    `http://localhost:5173/comments`
+    `localhost:5173/comments`
   * Pages are just Svelte components, there is no real difference between a
     `+page.svelte` file and any other `.svelte` file other than the
     `+page.svelte` component will be shown at specific URL routes.
-  * **Tip:** Global CSS can be imported in a +layout.svelte file (layouts explained
-    in next step)
-* Step 3: Layouts
-  * *In this step we create a simple Navbar using SvelteKit's layout components*
+* Step 4: File Based Routing with Layouts
+  * *In this step we create a simple Navbar using SvelteKit's layout components and create some global styles*
   * Layouts are another special type of Svelte component. Read their
     documentation [here](https://kit.svelte.dev/docs/routing#layout).
   * Layouts display the same thing no matter what route you visit (as long as it
     is a route nested under that layout). A common example of this would be a
     Navbar.
   * Make sure to use a `<slot>` tag for the page content that goes in that layout.
-* Step 4: Basic logic (loops and conditional rendering)
-  * *In this step we create an array of comments and display them as `<Comment>` components*
+  * **Tip:** Global CSS can be imported in the `+layout.svelte` file. We can
+    create an `app.css` file in the `src` folder an import it, which will
+    automatically apply the styles across our entire app.
+* Step 5: Basic logic, components, and props
+  * *In this step we create an array of comments and display them as reusable `<Comment>` components*
   * Often times we have an array of data we want to display in our markup. For
     this, we `#each` blocks to loop through data. Check out the documentation
     [here](https://svelte.dev/docs#template-syntax-each), or go through the
@@ -143,7 +145,14 @@ git checkout stepN
     See the full documentation
     [here](https://svelte.dev/docs#template-syntax-if) or go through the
     [interactive tutorial](https://svelte.dev/tutorial/if-blocks).
-* Step 5: Stores
+  * To create a resuable component, we can just create a new component in the
+    `src/lib/` directory generated for us by SvelteKit (i.e. `Comment.svelte`).
+    * From there, we can receive props by using the syntax `export let
+      propName;` - unfortunately this is a bit unintuitive!
+    * To pass in props, we use the same `attirubte={data}` syntax within elements.
+  * Here we create a local array of comments data in the comments page and use
+    loop rendering to render the reusable comment components.  
+* Step 6: Stores
   * *In this step we replace the local comments array and make it into a global store*
   * Often times web apps have a lot of global state, such as a logged-in user or
     a color theme. Instead of passing down the state through the component
@@ -171,7 +180,7 @@ export const Store = writable("initial data");
 <h1>{$Store}</h1>
 ```
 
-* Step 6: Updating stores and bindings
+* Step 7: Updating stores and bindings
   * *In this step we create an input form to add comments to the page*
   * To update a store’s value, simply import the store and call its `update`
     function!
@@ -182,14 +191,23 @@ export const Store = writable("initial data");
     then be saved to your component’s state. See the `bind` directive
     [documentation](https://svelte.dev/docs#template-syntax-element-directives-bind-property)
     or go through the [tutorial](https://svelte.dev/tutorial/text-inputs).
-* Step 7: Deleting comments
-  * *Feel free to try this step on your own*
-  * Add a "delete" button on *each* comment. When the button is   clicked,
-    remove that comment from the array of comments (comment should disappear).
-    * Hint 1: You only need to modify Comment.svelte
-    * Hint 2: Use the filter function on the comments array
-    * To see the solution, use `git checkout step7` or `git checkout complete`
-      (don't forget `git reset --hard`) 
+* Step 8: Deleting comments
+  * *In this step we allow users to delete individual comments*
+  * Here we add a "delete" button on *each* comment. When the button is clicked,
+    we remove that comment from the array of comments so that the comment disappears.
+  * Because we are using a global store, we can do this all in `Comment.svelte`
+    by accessing and modifying the comments store.   
+* Step 9: Adding animations
+  * *In this step we add some basic transitions to the comments list and the pages*
+  * Svelte provides a plethora of transition and animation features out of the box.
+  * Transitions can be applied to individual components and will usually activate when
+    they are mounted and/or unmounted. Documentation can be found
+    [here](https://svelte.dev/docs/svelte-transition).
+  * Svelte also allows us to add transitions between pages using view
+    transitions. Check out the documentation
+    [here](https://svelte.dev/blog/view-transitions).
+  * Let's animate the comments to fly in/out when being added/deleted, and add a
+    transition animation between the home and comments page. 
 
 ## Extra Resources
 ### Official Pages
