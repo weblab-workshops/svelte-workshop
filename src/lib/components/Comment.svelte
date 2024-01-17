@@ -4,7 +4,7 @@
   export let title;
   export let body;
 
-  import { CommentsStore } from '../store';
+  import { CommentsStore } from '$lib/stores/store';
 
   const deleteComment = () => {
     CommentsStore.update((prevStore) => prevStore.filter((comment) => comment.id !== id));
