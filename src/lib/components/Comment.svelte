@@ -4,7 +4,7 @@
   export let title;
   export let body;
 
-  import { CommentsStore } from '../store';
+  import { CommentsStore } from '$lib/stores/store';
 
   /**
    * Deletes this comment from the global store
