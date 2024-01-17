@@ -6,6 +6,8 @@
 
   import { CommentsStore } from '$lib/stores/store';
 
+  import { fly } from 'svelte/transition';
+
   /**
    * Deletes this comment from the global store
    */
@@ -14,7 +16,7 @@
   };
 </script>
 
-<article>
+<article transition:fly={{ x: -200 }}>
   <h3>
     {user}
   </h3>
