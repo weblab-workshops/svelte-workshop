@@ -24,7 +24,7 @@
 <h1>Comments</h1>
 
 <!-- New comment form -->
-<form on:submit={addComment}>
+<form on:submit|preventDefault={addComment}>
   <input type="text" bind:value={newCommentTitle} />
   <button type="submit">Add Comment</button>
 </form>
